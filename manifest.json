@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "Algocide",
+  "version": "0.1",
+  "description": "Removes addictive UX patterns from social media",
+
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+
+  "host_permissions": [
+    "*://*.instagram.com/*"
+  ],
+
+  "background": {
+    "service_worker": "background/service_worker.js"
+  },
+
+  "action": {
+    "default_popup": "ui/popup.html"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.instagram.com/*"
+      ],
+      "js": [
+        "content/dom_filters.js",
+        "content/injector.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}
